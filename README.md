@@ -121,3 +121,4 @@ After setting-up Octane on the server, it is also recommended to run `php artisa
 1. The project follows the Laravel code style guide.
 2. I ran `vendor/bin/pint` with all of the defaults, to be aligned with the rest of the ecosystem.
 3. All method arguments are type-hinted and include return types for self-documenting code as well as defensive programming.
+4. Every single file is covered by a PHPUnit test for the best stability.
