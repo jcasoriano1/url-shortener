@@ -111,9 +111,10 @@ After setting-up Octane on the server, it is also recommended to run `php artisa
 1. I created repositories for the Swoole cache, the Redis cache, and the database.
 2. The database uses Eloquent so that we can swap out the database to a different driver if we outgrow the current one.
 3. With this design, we can add more layers of caching in front of the database if needed - it just has to implement the `UrlRepositoryInterface` interface, and add it to the pipeline in the `UrlRepositoryPipeline` class.
-4. The `UrlRepositoryPipeline` manages the pipeline of repositories, and the `UrlShortenerService` orchestrates the process of encoding and decoding URLs.
-5. Validation is done in the `UrlDecodeRequest` and `UrlEncodeRequest` classes.
-6. The `UrlShortenerController` handles the API endpoints - it uses the Request classes to validate the input, calls the Service to encode and decode URLs, and returns the appropriate response.
+4. We can even add more persistence stores by simply adding classes that implement the `UrlRepositoryInterface` interface into the pipeline. So it doesn't necessarily have to be just multiple cache layers, but we can also have redundant persistence layers if we need to in the future. The `save` method is what's in-charge of persisting the data. 
+5. The `UrlRepositoryPipeline` manages the pipeline of repositories, and the `UrlShortenerService` orchestrates the process of encoding and decoding URLs.
+6. Validation is done in the `UrlDecodeRequest` and `UrlEncodeRequest` classes.
+7. The `UrlShortenerController` handles the API endpoints - it uses the Request classes to validate the input, calls the Service to encode and decode URLs, and returns the appropriate response.
 
 ### Code Styles
 
